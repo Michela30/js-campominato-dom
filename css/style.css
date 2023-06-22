@@ -51,14 +51,13 @@ MAIN
     color: white;
 }
 
-
+.my_buttons{
+    margin-top: 200px;
+}
 
 .bomba-button{
     width: 100px;
     height: 50px;
-    
-    border-top: 5px solid black;
-    border-left: 5px solid black;
 }
 
 .bomba-button img{

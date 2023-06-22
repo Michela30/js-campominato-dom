@@ -20,6 +20,9 @@ flagButton.classList.add('d-none');
 const cellResultInPage = document.querySelector('.cell-result');
 cellResultInPage.classList.add('d-none');
 
+const gameOver = document.querySelector('.game-over');
+gameOver.classList.add('d-none');
+
 const arrayBomb = [];
 
 let count = 0;
@@ -35,20 +38,20 @@ generatorButton.addEventListener('click', function(){
     const selectDifficulty = document.getElementById('select-difficult').value;
 
     const cellRow = document.querySelector('.row');
+    cellRow.classList.add('d-flex')
 
     cellRow.innerHTML = '';
 
     for(let index = 1; index <= selectDifficulty; index ++){
 
         const cellSquare = document.createElement('div');
-        const cellText = index;
 
         cellSquare.setAttribute('cellNumber', index)
 
         cellRow.append(cellSquare);
-        cellSquare.append(cellText);
+        cellSquare.append(index);
 
-        cellSquare.classList.remove('square', 'square-easy','square-medium','square-hard')
+        cellSquare.classList.remove('square', `square-size-${selectDifficulty}`, 'square-clicked', 'square-bomb-clicked')
 
         cellSquare.classList.add('square', `square-size-${selectDifficulty}`);
 
@@ -71,23 +74,25 @@ generatorButton.addEventListener('click', function(){
         
         //al click di ogni cella, questa si colora + messaggio in console
 
+        
         cellSquare.addEventListener('click', function(){
 
             const cellNumber  = this.getAttribute('cellNumber');
-            console.log('array bombe',arrayBomb)
-            console.log('cellNumber', cellNumber, typeof cellNumber)
-
+            
 
             if(arrayBomb.includes(parseInt(cellNumber))) {
+
                 cellSquare.classList.add('square-bomb-clicked')
                 bombCount++
                 bombResultInPage.classList.remove('d-none');
                 bombResultInPage.classList.add('text-danger');
                 bombResultInPage.innerHTML = `${bombCount}`;
+                gameOver.classList.remove('d-none');
+                cellRow.classList.add('d-none');
+            
             }else {
                 cellSquare.classList.add('square-clicked');
                 count++
-                console.log('sono una cella')
                 cellResultInPage.classList.remove('d-none');
                 cellResultInPage.classList.add('text-primary');
                 cellResultInPage.innerHTML = `${count}`
@@ -101,7 +106,26 @@ generatorButton.addEventListener('click', function(){
         // other buttons
         bombButton.classList.remove('d-none');
         flagButton.classList.remove('d-none');
+
+        const pressStart = document.querySelector('.press-start');
+        pressStart.classList.add('d-none')
     }
+
+    
+    const cellSquare = document.createElement('div');
+    
+    //tasto reset
+    const buttonReset = document.getElementById('button-reset');
+    buttonReset.addEventListener('click', function(){
+
+        gameOver.classList.add('d-none');
+        cellRow.classList.remove('d-none');
+        cellResultInPage.innerHTML= '';
+        bombResultInPage.innerHTML= '';
+        count = 0;
+        bombCount = 0;
+        cellSquare.classList.remove('square-clicked', 'square-bomb-clicked');
+    })
     
 })
 
