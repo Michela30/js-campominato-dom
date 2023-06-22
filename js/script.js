@@ -12,48 +12,49 @@ altrimenti continua il cambio azzurro
 const bombButton = document.querySelector('.bomba-button');
 bombButton.classList.add('d-none');
 
+const bombResultInPage = document.querySelector('.bomb-result');
+bombResultInPage.classList.add('d-none');
+
 const flagButton = document.querySelector('.flag-button');
 flagButton.classList.add('d-none')
 
 const arrayBomb = [];
+
 
 // al click verrà generata una griglia
 const generatorButton = document.getElementById('generator-button');
 generatorButton.addEventListener('click', function(){
 
     //select difficoltà
-    const select = document.getElementById('select-difficult').value;
+    const selectDifficulty = document.getElementById('select-difficult').value;
 
     const cellRow = document.querySelector('.row');
 
-    for(let index = 1; index <= select; index ++){
+    cellRow.innerHTML = '';
 
-        console.log('stampa tutti i numeri', index)
+    for(let index = 1; index <= selectDifficulty; index ++){
 
         const cellSquare = document.createElement('div');
         const cellText = index;
+
+        cellSquare.setAttribute('cellNumber', index)
 
         cellRow.append(cellSquare);
         cellSquare.append(cellText);
 
         cellSquare.classList.remove('square', 'square-easy','square-medium','square-hard')
 
-        if(select == 100){
-            cellSquare.classList.add('square', 'square-easy');
-        }else if(select == 81){
-            cellSquare.classList.add('square','square-medium');
-        }else{
-            cellSquare.classList.add('square','square-hard');
-        }
+        cellSquare.classList.add('square', `square-size-${selectDifficulty}`);
+
+        
         
         //ciclo while per generare numero delle bombe
         
         const numberBomb = 16;
 
         let j = 0;
-        while(arrayBomb.lenght < numberBomb){
-            const bNumber = randomBomb(1,select);
-
+        while(arrayBomb.length < numberBomb){
+            const bNumber = randomBomb(1,selectDifficulty);
             
             if(!arrayBomb.includes(bNumber)) {
                 arrayBomb.push(bNumber);
@@ -62,18 +63,24 @@ generatorButton.addEventListener('click', function(){
             j++;
         }
         
-        
-
+        console.log('array bombe',arrayBomb)
 
         //al click di ogni cella, questa si colora + messaggio in console
 
         cellSquare.addEventListener('click', function(){
+
+            const cellNumber  = this.getAttribute('cellNumber')
+
+            if(arrayBomb.includes(cellNumber)) {
+
+                cellSquare.classList.add('square-bomb-clicked')
+                console.log('sono una bomba')
+            }else {
+                cellSquare.classList.toggle('square-clicked');
+                console.log('sono una cella')
+            }
             
-            this.classList.toggle('square-clicked');
-            console.log('sto cliccando i riquadri');
-
             printNumber(cellText);
-
         })
 
         // other buttons
@@ -81,9 +88,6 @@ generatorButton.addEventListener('click', function(){
         flagButton.classList.remove('d-none');
     }
     
-
-    document.getElementById("generator-button").disabled = true;
-    document.getElementById('button-reset').disabled = true;
 })
 
 function printNumber(parametro){
@@ -93,3 +97,4 @@ function printNumber(parametro){
 function randomBomb(min, max){
     return Math.floor(Math.random() * max - min + 1 ) + min;
 }
+

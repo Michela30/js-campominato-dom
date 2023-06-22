@@ -29,26 +29,34 @@ MAIN
     align-items: center;
     color: white;
 }
-.square-easy{
+.square-size-100{
     width: calc(100% / 10);
     height: 60px;
 }
-.square-medium{
+.square-size-81{
     width: calc(100% / 9);
     height: 70px;
 }
-.square-hard{
+.square-size-49{
     width: calc(100% / 7);
     height: 80px;
 }
+
 .square-clicked{
     background: #3f5efb;
     color: #46fcf4;
 }
+.square-bomb-clicked{
+    background: red;
+    color: white;
+}
+
+
 
 .bomba-button{
     width: 100px;
     height: 50px;
+    margin-top: 50px;
     border-top: 5px solid black;
     border-left: 5px solid black;
 }
