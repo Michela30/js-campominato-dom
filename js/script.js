@@ -1,10 +1,12 @@
 /* 
-Copiamo la griglia fatta ieri nella nuova repo e aggiungiamo la logica del gioco (attenzione: non bisogna copiare tutta la cartella dell'esercizio ma solo l'index.html, e le cartelle js/ css/ con i relativi script e fogli di stile, per evitare problemi con l'inizializzazione di git).
-Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe. Attenzione: nella stessa cella può essere posizionata al massimo una bomba, perciò nell'array delle bombe non potranno esserci due numeri uguali.
-
-In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina. Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
-La partita termina quando il giocatore clicca su una bomba o quando raggiunge il numero massimo possibile di numeri consentiti (ovvero quando ha rivelato tutte le celle che non sono bombe).
-Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l'utente ha cliccato su una cella che non era una bomba.
+1 il pc deve generare 16 num casuali(bombe), inserita in un array, no numeri doppi
+2 se l'utente clicca su un numero bomba, cambia di colore rosso, perde
+altrimenti continua il cambio azzurro
+3 la partita termina
+    - se hai schiacciato una bomba
+    - se non hai più caselle disponibili ( da specificare)
+    - 
+4 al termina comunicare il punteggio
 */
 
 const bombButton = document.querySelector('.bomba-button');
@@ -13,12 +15,13 @@ bombButton.classList.add('d-none');
 const flagButton = document.querySelector('.flag-button');
 flagButton.classList.add('d-none')
 
+const arrayBomb = [];
 
-
+// al click verrà generata una griglia
 const generatorButton = document.getElementById('generator-button');
 generatorButton.addEventListener('click', function(){
 
-    // al click verrà generata una griglia
+    //select difficoltà
     const select = document.getElementById('select-difficult').value;
 
     const cellRow = document.querySelector('.row');
@@ -42,6 +45,25 @@ generatorButton.addEventListener('click', function(){
         }else{
             cellSquare.classList.add('square','square-hard');
         }
+        
+        //ciclo while per generare numero delle bombe
+        
+        const numberBomb = 16;
+
+        let j = 0;
+        while(arrayBomb.lenght < numberBomb){
+            const bNumber = randomBomb(1,select);
+
+            
+            if(!arrayBomb.includes(bNumber)) {
+                arrayBomb.push(bNumber);
+            }
+            
+            j++;
+        }
+        
+        
+
 
         //al click di ogni cella, questa si colora + messaggio in console
 
@@ -54,10 +76,12 @@ generatorButton.addEventListener('click', function(){
 
         })
 
+        // other buttons
         bombButton.classList.remove('d-none');
         flagButton.classList.remove('d-none');
     }
     
+
     document.getElementById("generator-button").disabled = true;
     document.getElementById('button-reset').disabled = true;
 })
@@ -66,3 +90,6 @@ function printNumber(parametro){
     console.log(parametro)
 }
 
+function randomBomb(min, max){
+    return Math.floor(Math.random() * max - min + 1 ) + min;
+}
