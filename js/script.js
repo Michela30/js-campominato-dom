@@ -5,7 +5,6 @@ altrimenti continua il cambio azzurro
 3 la partita termina
     - se hai schiacciato una bomba
     - se non hai più caselle disponibili ( da specificare)
-    - 
 4 al termina comunicare il punteggio
 */
 
@@ -16,10 +15,17 @@ const bombResultInPage = document.querySelector('.bomb-result');
 bombResultInPage.classList.add('d-none');
 
 const flagButton = document.querySelector('.flag-button');
-flagButton.classList.add('d-none')
+flagButton.classList.add('d-none');
+
+const cellResultInPage = document.querySelector('.cell-result');
+cellResultInPage.classList.add('d-none');
 
 const arrayBomb = [];
 
+let count = 0;
+let bombCount = 0;
+
+let gameIsRunning = true;
 
 // al click verrà generata una griglia
 const generatorButton = document.getElementById('generator-button');
@@ -63,24 +69,33 @@ generatorButton.addEventListener('click', function(){
             j++;
         }
         
-        console.log('array bombe',arrayBomb)
-
         //al click di ogni cella, questa si colora + messaggio in console
 
         cellSquare.addEventListener('click', function(){
 
-            const cellNumber  = this.getAttribute('cellNumber')
+            const cellNumber  = this.getAttribute('cellNumber');
+            console.log('array bombe',arrayBomb)
+            console.log('cellNumber', cellNumber, typeof cellNumber)
 
-            if(arrayBomb.includes(cellNumber)) {
 
+            if(arrayBomb.includes(parseInt(cellNumber))) {
                 cellSquare.classList.add('square-bomb-clicked')
-                console.log('sono una bomba')
+                bombCount++
+                bombResultInPage.classList.remove('d-none');
+                bombResultInPage.classList.add('text-danger');
+                bombResultInPage.innerHTML = `${bombCount}`;
             }else {
-                cellSquare.classList.toggle('square-clicked');
+                cellSquare.classList.add('square-clicked');
+                count++
                 console.log('sono una cella')
+                cellResultInPage.classList.remove('d-none');
+                cellResultInPage.classList.add('text-primary');
+                cellResultInPage.innerHTML = `${count}`
             }
+
+            countClick(count);
+            console.log('count bomb', bombCount)
             
-            printNumber(cellText);
         })
 
         // other buttons
@@ -90,11 +105,14 @@ generatorButton.addEventListener('click', function(){
     
 })
 
-function printNumber(parametro){
+/*function printNumber(parametro){
     console.log(parametro)
-}
+}*/
 
 function randomBomb(min, max){
     return Math.floor(Math.random() * max - min + 1 ) + min;
 }
 
+function countClick(n){
+    n + 1;
+}
