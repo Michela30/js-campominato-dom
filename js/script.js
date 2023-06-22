@@ -55,8 +55,9 @@ generatorButton.addEventListener('click', function(){
 
         cellSquare.classList.add('square', `square-size-${selectDifficulty}`);
 
-        
-        
+        cellResultInPage.classList.remove('d-none');
+        bombResultInPage.classList.remove('d-none');
+
         //ciclo while per generare numero delle bombe
         
         const numberBomb = 16;
@@ -84,7 +85,7 @@ generatorButton.addEventListener('click', function(){
 
                 cellSquare.classList.add('square-bomb-clicked')
                 bombCount++
-                bombResultInPage.classList.remove('d-none');
+                
                 bombResultInPage.classList.add('text-danger');
                 bombResultInPage.innerHTML = `${bombCount}`;
                 gameOver.classList.remove('d-none');
@@ -93,7 +94,7 @@ generatorButton.addEventListener('click', function(){
             }else {
                 cellSquare.classList.add('square-clicked');
                 count++
-                cellResultInPage.classList.remove('d-none');
+                
                 cellResultInPage.classList.add('text-primary');
                 cellResultInPage.innerHTML = `${count}`
             }
