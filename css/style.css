@@ -1,0 +1,104 @@
+@import url(general.css);
+
+
+body{
+    background-color: grey;
+    font-family: 'Anton', sans-serif;
+}
+/* 
+HEADER
+*/
+header{
+    height: 30px;
+}
+/* 
+MAIN
+*/
+
+.my_container{
+    max-width: 750px;
+    margin: 0 25px; 
+}
+
+.square{
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 5%, rgba(252,70,70,0.5830707282913166) 87%);
+    border: 3px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.square-easy{
+    width: calc(100% / 10);
+    height: 60px;
+}
+.square-medium{
+    width: calc(100% / 9);
+    height: 70px;
+}
+.square-hard{
+    width: calc(100% / 7);
+    height: 80px;
+}
+.square-clicked{
+    background: #3f5efb;
+    color: #46fcf4;
+}
+
+.bomba-button{
+    width: 100px;
+    height: 50px;
+    border-top: 5px solid black;
+    border-left: 5px solid black;
+}
+
+.bomba-button img{
+    width: 100%;
+}
+
+.flag-button{
+    width: 100px;
+    height: 50px;
+}
+
+.flag-button img{
+    width: 100%;
+}
+
+
+/* 
+MEDIA QUERY da Desktop first
+*/
+
+/* Tablet */
+
+@media screen and (max-width: 768px){
+
+}
+
+
+/* Mobile */
+@media screen and (max-width: 576px){
+    
+}
+
+
+
+/* 
+MEDIA QUERY da Mobile first
+*/
+
+/* Tablet */
+
+@media screen and (min-width: 768px){
+
+}
+
+
+/* Desktop */
+@media screen and (min-width: 992px){
+    
+}
+
+

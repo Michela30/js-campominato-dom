@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Campo Minato</title>
+
+        <!-- FONT -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+        <!-- FONT AWESOME-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- BOOTSTRAP -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+<body>
+
+    <header>
+        <!-- <img src="https://arcadegames.carrd.co/assets/images/image02.gif?v05674132203951" alt=""> -->
+        <h1 class="text-left ps-5 mt-2 text-white border border-danger">
+            Campo Minato
+        </h1>
+
+    </header>
+
+    <div class="my_container d-flex">
+        
+        <div class="row mt-4 g-0">
+                
+        </div>
+        
+        <div class="text-left ps-4 my-4">
+
+            <select name="select-difficult" id="select-difficult">
+                <option selected>Scegli il livello</option>
+                <option value="100">Facile</option>
+                <option value="81">Medio</option>
+                <option value="49">Difficile</option>
+            </select>
+
+            <button id="generator-button" class="border border-secondary mt-2">
+                Start
+            </button>
+
+            <button type="reset" id="button-reset" class="mt-2 border border-secondary">
+                Reset
+            </button>
+
+            <div class="mt-5">
+                <button class="bomba-button bg-white">
+                    <img src="https://emojis.wiki/thumbs/emojis/bomb.webp" alt="">
+                </button>
+            </div>
+            <div>
+                <button class="flag-button bg-white mt-2">
+                    <img src="https://images.emojiterra.com/google/noto-emoji/unicode-15/color/share/1f6a9.jpg" alt="">
+                </button>
+            </div>
+           
+        </div>
+    </div>
+    
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <!-- FILE JS -->
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
